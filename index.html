@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ideas</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <div id="app" style="padding: 2rem;">
+        <section class="hero">
+            <div class="hero-body">
+              <p class="title">
+                Mis Ideas
+              </p>
+              <p class="subtitle">
+               Proyecto Vue basico
+              </p>
+            </div>
+          </section>
+          <div class="columns">
+            <div class="column">
+                <section class="hero">
+                    <div class="hero-body">
+                      <p class="subtitle">
+                       Registrar ideas
+                      </p>
+                      <div class="field">
+                        <label class="label">Idea</label>
+                        <div class="control">
+                          <input v-model="idea_txt" class="input" type="text" placeholder="Ingrese la idea">
+                        </div>
+                      </div>
+                      <div class="field">
+                        <label class="label">Prioridad</label>
+                        <div class="control">
+                          <div class="select">
+                            <select v-model="prioridad">
+                              <option value="N">Normal</option>
+                              <option value="I">Importante</option>
+                              <option value="M">Muy Importante</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                      <button @click="agregarIdea()" class="button is-success">Agregar</button>
+                    </div>
+                  </section>
+            </div>
+            <div class="column">
+                <section class="hero">
+                    <div class="hero-body">
+                      <p class="subtitle">
+                       Lista de ideas
+                      </p>
+                      <div class="control">
+                        <input v-model="search_txt" class="input" type="text" placeholder="Buscar la idea">
+                      </div>
+                      <table class="table">
+                          <thead>
+                              <th>Idea</th>
+                              <th>Prioridad</th>
+                              <th>Acciones</th>
+                          </thead>
+                          <tbody>
+                              <tr v-for="i in lista_ideas">
+                                  <td>{{ i.idea }}></td>
+                                  <td>
+                                      <span v-if="i.prioridad === 'N'" class="tag is-info">Normal
+                                      </span>
+                                      <span v-else-if="i.prioridad === 'I'" class="tag is-warning">Importante</span>
+                                      <span v-else class="tag is-danger">Muy importante</span>
+                                    </td>
+                                  <td><button @click="eliminarIdea" class="button is-danger is-light">Eliminar</button></td>
+                              </tr>
+                             
+                          </tbody>
+                      </table>
+                    </div>
+
+                  </section>
+            </div>
+            
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>
